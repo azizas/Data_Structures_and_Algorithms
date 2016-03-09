@@ -1,59 +1,89 @@
 #include <stdio.h>
-int i = -1 ; 
-void pop()
+#include <stdlib.h>
+struct node 
 {
-	if (i==-1)
-	{
-		return ; 
-	}
+int data ; 
+struct node *next ; 
 
---i; 
+}; 
+void Top(struct node *top)
+{
+struct node *p = top ; 
+printf("from Top %d",p->data); 
 
 }
-void fill (int *A,int *val)
-{
-	++i ; 
-A[i] = *val ; 
-return ; 
-}
-void print(int *A, int i)
-{
-printf("\n----------------\n");
-for (int x = 0 ; x<i ; x++)
-{
+int isEmpty(struct node *top)
 
-printf("Array has %d \n",A[x]);
+{
+struct node *temp = top ; 
+if(temp==NULL)
+{
+	return 0 ; 
+}
+else
+return 1 ; 
+
+}
+struct node *push (struct node *top,int x)
+{
+struct node *temp = malloc(sizeof(struct node)); 
+temp->data = x ; 
+temp->next = top; 
+top = temp ; 
+return top ; 
+}
+struct node *  pop (struct node *top)
+{
+struct node *p = top ; 
+
+top = top->next ; 
+free(p); 
+return top ; 
+
+}
+void print (struct node *top)
+{
+struct node *p = top ; 
+while (p!= NULL)
+{
+	printf("%d,",p->data); 
+	p = p->next ; 
+
 }
 
 }
 int main ()
 {
-	int xx ; 
-	int *p = &xx; 
+struct node *top = NULL ;
+int y ; 
 
-int A[100] ; 
-
-int x ; 
-
-
-
-do 
+printf("Enter value to Pusth into the stack 5 times \n\n"); 
+scanf("%d:",&y);; 
+top= push(top,y);
+scanf("%d:",&y);; 
+top= push(top,y);
+scanf("%d:",&y);;
+top= push(top,y); 
+scanf("%d:",&y);; 
+top= push(top,y);
+scanf("%d:",&y);; 
+top= push(top,y);
+top= pop(top); 
+print(top); 
+int x  = isEmpty(top);
+if (x==0)
 {
 
+	printf("List is Empty \n\n"); 
+}
+else 
+{
 
-scanf("%d",&xx); 
+	printf("List is Not Empty \n\n"); 
+}
+Top(top); 
 
-fill(A,&xx);
 
 
-
-}while (i<5); 
-
-pop();
-pop();
-pop();
- *p= 10 ; 
- fill(A,p); 
-print(A,i);
 
 }
